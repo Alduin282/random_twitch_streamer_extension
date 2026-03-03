@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=360">
+  <link rel="stylesheet" href="popup.css">
+  <title>Twitch Random Streamer</title>
+</head>
+<body>
+  <!-- ===== Main Screen ===== -->
+  <div id="screen-main" class="screen active">
+    <header>
+      <div class="logo">
+        <svg class="twitch-icon" viewBox="0 0 24 24" width="22" height="22">
+          <path fill="#9146FF" d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0 1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/>
+        </svg>
+        <h1>Random Streamer</h1>
+      </div>
+      <button id="btn-settings" class="icon-btn" title="Настройки API">
+        <svg viewBox="0 0 24 24" width="20" height="20">
+          <path fill="currentColor" d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 0 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+        </svg>
+      </button>
+    </header>
+
+    <div class="filters">
+      <!-- Language -->
+      <div class="field">
+        <label for="language">Язык стрима</label>
+        <select id="language">
+          <option value="ru">Русский</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+          <option value="pt">Português</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="zh">中文</option>
+          <option value="it">Italiano</option>
+          <option value="uk">Українська</option>
+          <option value="">Любой</option>
+        </select>
+      </div>
+
+      <!-- Viewer count -->
+      <div class="field">
+        <label for="viewer-count">Количество зрителей</label>
+        <div class="viewer-row">
+          <select id="viewer-mode">
+            <option value="less">Меньше</option>
+            <option value="more">Больше</option>
+          </select>
+          <input type="number" id="viewer-count" min="0" value="10" />
+        </div>
+      </div>
+
+      <!-- Category -->
+      <div class="field">
+        <label for="category">Категория</label>
+        <div class="category-wrapper">
+          <input type="text" id="category" value="Just Chatting" autocomplete="off" placeholder="Введите категорию..." />
+          <div id="category-suggestions" class="suggestions hidden"></div>
+        </div>
+      </div>
+    </div>
+
+    <button id="btn-random" class="btn-random">
+      <span class="dice">🎲</span> Рандом!
+    </button>
+
+    <div id="status" class="status hidden"></div>
+  </div>
+
+  <!-- ===== Settings Screen ===== -->
+  <div id="screen-settings" class="screen">
+    <header>
+      <button id="btn-back" class="icon-btn" title="Назад">
+        <svg viewBox="0 0 24 24" width="20" height="20">
+          <path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20z"/>
+        </svg>
+      </button>
+      <h1>Настройки API</h1>
+    </header>
+
+    <div class="settings-body">
+      <p class="settings-hint">
+        Получите Client-ID и Client-Secret на
+        <a href="https://dev.twitch.tv/console/apps" target="_blank">dev.twitch.tv</a>
+      </p>
+
+      <div class="field">
+        <label for="client-id">Client ID</label>
+        <input type="text" id="client-id" placeholder="Вставьте Client ID..." />
+      </div>
+
+      <div class="field">
+        <label for="client-secret">Client Secret</label>
+        <input type="password" id="client-secret" placeholder="Вставьте Client Secret..." />
+      </div>
+
+      <button id="btn-save-settings" class="btn-save">Сохранить</button>
+      <div id="settings-status" class="status hidden"></div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
